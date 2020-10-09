@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import datetime
 import re
 import smtplib
@@ -9,7 +10,6 @@ from flask import session as login_session
 import string, random
 from hashlib import sha256
 
-from flask_socketio import SocketIO, emit
 from flask_wtf import CSRFProtect
 #from flask_csp.csp import csp_header
 
@@ -19,7 +19,6 @@ app = Flask(__name__)
 app.secret_key = "qyAxbizRZdk_q2mEIrTtGx87"
 WTF_CSRF_SECRET_KEY = "sd54asfdSA5DA5SF8WEFS3F5Aiopjj98h5"
 csrf = CSRFProtect(app)
-socketio = SocketIO(app)
 
 app.config.update(
 #SESSION_COOKIE_SECURE=True,
