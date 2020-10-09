@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Messages</title>
+</head>
+<body>
+{% if login_session['username'] %}
+
+    <p>{{ login_session['username'] }}</p>
+{% endif %}
+<h1>Chats: </h1>
+
+{% if chats %}
+{% for x in chats %}
+    <a href="/read/{{ x }}"><h3>{{ chats[x] }}</h3></a>
+{% endfor %}
+{% endif %}
+
+{% if msgs %}
+{% for x in msgs %}
+<div>
+<p>{{ x[0] }} : {{ x[1] }}</p>
+</div>
+{% endfor %}
+    <form action="{{ url_for('chat_user', id=chat_id) }}" method="post">
+    <input type="text" placeholder="reply ....." name="msg"/>
+    <input type="hidden" style="display: none" name="sender" value="{{ login_session['username'] }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <input type="submit" style="display: none" hidden/>
+    </form>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message System | Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <div id="left">
+    <h1><a href="#">Welcome to my message system</a></h1>
+</div>
+    <div id="right">
+    {% if login_session['user_id'] %}
+
+    <p>{{ login_session['username'] }}
+    <a href="{{url_for('logout')}}"> Logout</a></p>
+    {% else %}
+        <form method="post" action="{{ url_for('login')}}">
+    <input type="text" name="user_name" placeholder="Username...">
+    <input type="password" name="pass" minlength="8" placeholder="Password...">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit" >Login</button>
+</form>
+        <a href="{{ url_for('forget') }}" >Forget Password</a>
+
+</div>
+</header>
+        <pre />
+        <h4>Register</h4>
+        <form method="post" action="{{ url_for('register') }}" >
+    <p><input type="text" name="fname" required placeholder="First Name">    <input type="text" name="lname" required placeholder="Last Name"></p>
+    <p><input type="text" name="user" required placeholder="Username..."></p>
+    <p><input type="email" name="email" required placeholder="email address..."></p>
+   <p> <input type="password" name="password1" minlength="8" required placeholder="Enter Password..."></p>
+   <p> <input type="password" name="password2" minlength="8" required placeholder="Retype Password..."></p>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+   <p> <button type="submit">Sign UP</button></p>
+</form>
+        <pre />
+    {% endif %}
+
+
+<!--
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <p style="color: magenta">{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+-->
+    <pre/>
+
+<footer>
+    <p>Cybersecurity Specialization-NTL Project By: A.K.M</p>
+</footer>
+
+</body>
+</html>

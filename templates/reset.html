@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+</head>
+<body>
+
+<form method="post">
+    <input type="password" name="password1" minlength="8" required>
+    <input type="password" name="password2" minlength="8" required>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit">Reset</button>
+</form>
+
+</body>
+</html>
